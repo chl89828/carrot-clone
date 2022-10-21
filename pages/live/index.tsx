@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import type { NextPage } from 'next';
 
 const Live: NextPage = () => {
@@ -7,11 +6,11 @@ const Live: NextPage = () => {
       {[1, 2, 3, 4, 5].map((_, i) => (
         <div className="px-4 pt-4 " key={i}>
           <div className="aspect-video w-full rounded-md bg-slate-300 shadow-md"></div>
-          <h3 className="mt-2 text-lg text-gray-700">Let's try potatos</h3>
+          <h3 className="mt-2 text-lg text-gray-700">Let&apos;s try potatos</h3>
         </div>
       ))}
 
-      <button className="fixed bottom-24 right-5 rounded-full bg-orange-400 p-4 text-white  hover:bg-orange-500">
+      <button className="fixed bottom-24 right-5 rounded-full border-transparent bg-orange-400 p-4 text-white  hover:bg-orange-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
