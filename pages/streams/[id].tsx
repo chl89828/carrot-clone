@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 
-const LiveDetail: NextPage = () => {
+const StreamDetail: NextPage = () => {
   return (
     <div className="py-10 ">
       <div className="px-4 pt-4 ">
@@ -101,4 +101,4 @@ const LiveDetail: NextPage = () => {
   );
 };
 
-export default LiveDetail;
+export default StreamDetail;
