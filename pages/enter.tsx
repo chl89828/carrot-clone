@@ -1,9 +1,5 @@
 import { useState } from 'react';
-
-function cls(...classnames: string[]) {
-  return classnames.join(' ');
-}
-
+import { cls } from '../libs/utils';
 export default function Enter() {
   const [method, setMethod] = useState<'email' | 'phone'>('email');
   const onEmailClick = () => setMethod('email');
@@ -41,7 +37,7 @@ export default function Enter() {
           </div>
         </div>
         <form className="mt-8 flex flex-col">
-          <label htmlFor='input' className="text-sm font-medium text-gray-700">
+          <label htmlFor="input" className="text-sm font-medium text-gray-700">
             {method === 'email' ? 'Email address' : null}
             {method === 'phone' ? 'Phone number' : null}
           </label>
