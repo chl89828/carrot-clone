@@ -1,22 +1,28 @@
-import {NextPage} from "next";
+import { NextPage } from 'next';
 
-const Community: NextPage = () =>{
-    return (
-        <div className="py-16 px-4 space-y-8">
-            {[1,2,3,4,5,6].map((_, i) =>(
-                <div className="flex flex-col items-start">
-          <span className="flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">동네질문</span>
-          <span className="mt-2 text-gray-700 ">
-            <span className="text-orange-500 font-medium">Q.</span> What is the best mandu restaurant?
+const Community: NextPage = () => {
+  return (
+    <div className="space-y-8 py-16 px-4">
+      {[1, 2, 3, 4, 5, 6].map((_, i) => (
+        <div
+          key={i}
+          className="mb-3 flex cursor-pointer flex-col items-start border-b border-gray-400"
+        >
+          <span className="flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+            동네질문
           </span>
-          <div className="mt-5 flex items-center justify-between w-full text-gray-500 text-medium text-sm">
+          <span className="mt-2 text-gray-700 ">
+            <span className="font-medium text-orange-500">Q.</span> What is the
+            best mandu restaurant?
+          </span>
+          <div className="text-medium mt-5 flex w-full items-center justify-between text-sm text-gray-500">
             <span>동동</span>
             <span>18시간 전</span>
           </div>
-          <div className="flex space-x-5 mt-3 text-gray-700 py-2.5 border-t borer-b-2 w-full">
+          <div className="borer-b-2 mt-3 flex w-full space-x-5 border-t py-2.5 text-gray-700">
             <span className="flex items-center space-x-2">
               <svg
-                className="w-4 h-4"
+                className="h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -31,9 +37,9 @@ const Community: NextPage = () =>{
               </svg>
               <span>궁금해요 1</span>
             </span>
-            <span className="flex items-center space-x-2" >
+            <span className="flex items-center space-x-2">
               <svg
-                className="w-4 h-4"
+                className="h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -50,25 +56,25 @@ const Community: NextPage = () =>{
             </span>
           </div>
         </div>
-            ))}
-        
-        <button>
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-            ></path>
-          </svg>
-        </button>
-      </div>
-    )
-}
+      ))}
+
+      <button>
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  );
+};
 export default Community;
