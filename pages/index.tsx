@@ -3,6 +3,7 @@ import FloatingButton from '../components/floating-button';
 import Item from '../components/item';
 import Layout from '../components/layout';
 import Link from 'next/link';
+
 const Home: NextPage = () => {
   return (
     <Layout title="홈" hasTabBar>
