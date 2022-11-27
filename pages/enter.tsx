@@ -1,9 +1,33 @@
 import { useState } from 'react';
-import { cls } from '../libs/utils';
-export default function Enter() {
+import { useForm } from 'react-hook-form';
+import { cls } from '@libs/client/utils';
+import Input from '@components/input';
+import Button from '@components/button';
+import { NextPage } from 'next';
+import useMutation from '@libs/client/useMutation';
+
+interface EnterForm {
+  email?: string;
+  phone?: string;
+}
+const Enter: NextPage = () => {
+  const [enter, { loading, data, error }] = useMutation('/api/users/enter');
+  const [submitting, setSubmitting] = useState(false);
+  const { register, handleSubmit, reset } = useForm<EnterForm>();
+
   const [method, setMethod] = useState<'email' | 'phone'>('email');
-  const onEmailClick = () => setMethod('email');
-  const onPhoneClick = () => setMethod('phone');
+  const onEmailClick = () => {
+    reset();
+    setMethod('email');
+  };
+  const onPhoneClick = () => {
+    reset();
+    setMethod('phone');
+  };
+  const onValid = (validForm: EnterForm) => {
+    enter(validForm);
+  };
+  console.log(loading, data, error);
 
   return (
     <div className="mt-16 px-3">
@@ -36,36 +60,39 @@ export default function Enter() {
             </button>
           </div>
         </div>
-        <form className="mt-8 flex flex-col">
-          <label htmlFor="input" className="text-sm font-medium text-gray-700">
-            {method === 'email' ? 'Email address' : null}
-            {method === 'phone' ? 'Phone number' : null}
-          </label>
+        <form onSubmit={handleSubmit(onValid)} className="mt-8 flex flex-col">
           <div>
             {method === 'email' ? (
-              <input
-                className="w-full rounded-md border-gray-300 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
-                type="email"
-                required
+              <Input
+                register={register('email', {
+                  required: true,
+                })}
+                type={'email'}
+                name={'email'}
+                requried={true}
+                label="Email address"
               />
             ) : null}
             {method === 'phone' ? (
-              <div className="flex rounded-md shadow-sm">
-                <span className="flex select-none items-center justify-center rounded-l-md border border-r-0 bg-gray-50 px-3 text-gray-500">
-                  +82
-                </span>
-                <input
-                  className="w-full rounded-r-md border border-gray-300 border-transparent py-2 px-4"
-                  type="number"
-                  required
-                />
-              </div>
+              <Input
+                register={register('phone', { required: true })}
+                type={'number'}
+                name={'phone'}
+                requried={true}
+                label="Phone number"
+                preInput="+82"
+              />
             ) : null}
           </div>
-          <button className="mt-5 w-full rounded-md bg-orange-500 py-3 font-medium text-white shadow-sm hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
-            {method === 'email' ? 'Get login link' : null}
-            {method === 'phone' ? 'Get one-time password' : null}
-          </button>
+          <Button
+            text={
+              submitting
+                ? 'Loading'
+                : method === 'email'
+                ? 'Get login link'
+                : 'Get one-time password'
+            }
+          />
         </form>
         <div>
           <div className="relative mt-6 mb-5">
@@ -106,4 +133,6 @@ export default function Enter() {
       </div>
     </div>
   );
-}
+};
+
+export default Enter;
