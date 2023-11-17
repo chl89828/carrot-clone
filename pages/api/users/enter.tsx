@@ -1,7 +1,10 @@
+import twilio from 'twilio';
 import client from '@libs/server/client';
 import withHandler, { ResponseType } from '@libs/server/withHandler';
 import { prisma } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
+
+const twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 async function handler(
   req: NextApiRequest,
@@ -30,7 +33,14 @@ async function handler(
       },
     },
   });
-  console.log(token);
+  if (phone) {
+    const message = await twilioClient.messages.create({
+      messagingServiceSid: process.env.TWILIO_MSID,
+      to: process.env.PHONE!, //phone,
+      body: `Your login token is ${payload}`,
+    });
+    console.log(message);
+  }
 
   /*
   if (email) {
